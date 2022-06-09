@@ -23,11 +23,20 @@
   </head>
 
   <body class="login">
+  @if(isset($pesan) && $pesan !='' )
+    <div class = "alert alert-danger">
+        <ul>
+            <li>{{$pesan}}</li>
+        </ul>
+    </div>
+
+  @endif
     <div>
       <a class="hiddenanchor" id="signup"></a>
       <a class="hiddenanchor" id="signin"></a>
 
       <div class="login_wrapper">
+     
         <div class="animate form login_form">
           <section class="login_content">
             <form action="/login" method="POST" name="form-login" id="form-login">
@@ -41,6 +50,7 @@
                   </ul>
               </div>
             @endif
+             
               <h1>Login Form</h1>
               <div>
                 <input type="text" class="form-control" placeholder="Email" name="email" required="" />

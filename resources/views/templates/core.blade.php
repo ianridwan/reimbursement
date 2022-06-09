@@ -50,11 +50,13 @@
                   </li>
                   <li><a href="{{ url('/reimbursement') }}"><i class="fa fa-edit"></i> Reimbursement</a>
                   </li>
+                  @can('isAdmin')
                   <li><a><i class="fa fa-bar-chart-o"></i>Pengaturan <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="general_elements.html">User</a></li>
+                      <li><a href="{{ url('/user') }}">User</a></li>
                     </ul>
                   </li>
+                  @endcan
                 </ul>
               </div>
             </div>

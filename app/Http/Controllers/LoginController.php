@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Session;
 
 class LoginController extends Controller
 {
@@ -16,7 +17,7 @@ class LoginController extends Controller
         ]);
         if(Auth::attempt($credentials)){
             $request->session()->regenerate();
-            return redirect('/')->with('user');
+            return redirect('/home');
         }
         return back()->withErrors([
             'email'=> 'The provied credentials do not match our records',
@@ -30,8 +31,15 @@ class LoginController extends Controller
     }
 
     public function index(){
+        $pesan = Session::get('pesan');
         $user=Auth::user();
-        return view('/auth/login',['user'=>$user]);
+        if(isset($user) && $user !=''){
+            return view('/home',['users'=>$user]);
+            // $pesan=$user;
+        }else{
+            return view('/auth/login',['users'=>$user,'pesan'=>$pesan]);
+        }
+        
     }
     public function register(){
         return view('/auth/register');
