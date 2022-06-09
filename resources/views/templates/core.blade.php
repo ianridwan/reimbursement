@@ -86,7 +86,7 @@
        @include('templates.footer')
       </div>
     </div>
-
+    @yield('child-scripts')
     <!-- jQuery -->
     <script src="{{ url('vendors/jquery/dist/jquery.min.js') }}"></script>
     <!-- Bootstrap -->
@@ -102,7 +102,7 @@
     <!-- bootstrap-progressbar -->
     <script src="{{ url('vendors/bootstrap-progressbar/bootstrap-progressbar.min.js') }}"></script>
     <!-- iCheck -->
-    <script src="{{ url('vendors/iCheck/icheck.min.js') }}"></script>
+    <!-- <script src="{{ url('vendors/iCheck/icheck.min.js') }}"></script> -->
     <!-- Skycons -->
     <script src="{{ url('vendors/skycons/skycons.js') }}"></script>
     <!-- Flot -->
