@@ -15,22 +15,28 @@ use App\Http\Controllers\LoginController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+use Illuminate\Support\Facades\Auth;
+ 
 
-Route::get('/',[HomeController::class,'index']);
-Route::get('/reimbursement',[ReimbursementController::class,'index']);
-Route::get('/reimbursement-add',[ReimbursementController::class,'reimbursement_add']);
+    Route::get('/',[HomeController::class,'index']);
+    Route::get('/reimbursement',[ReimbursementController::class,'index']);
+    Route::get('/reimbursement-add',[ReimbursementController::class,'reimbursement_add']);
+    Route::post('/reimbursement-add',[ReimbursementController::class,'reimbursement_save']);
 
-Route::get('/login', function () {
-    return view('auth.login');
-});
+    
+
+    Route::post('/register_save', [LoginController::class, 'register_save']);
+    Route::post('/login', [LoginController::class, 'login']);
+    Route::post('/logout', [LoginController::class, 'logout']);
+    Route::post('/index', [LoginController::class, 'index']);
 
 
-Route::get('/register', function () {
-    return view('auth.register');
-});
+    Route::get('/login', function () {
+        return view('auth.login');
+    });
 
-Route::post('/login', [LoginController::class, 'login']);
-Route::post('/logout', [LoginController::class, 'logout']);
-Route::post('/index', [LoginController::class, 'index']);
-Route::post('/register_save', [LoginController::class, 'register_save']);
+    Route::get('/register', function () {
+        return view('auth.register');
+    });
+
 
