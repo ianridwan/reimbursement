@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ReimbursementController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,3 +16,5 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/',[HomeController::class,'index']);
+Route::get('/reimbursement',[ReimbursementController::class,'index']);
+Route::get('/reimbursement-add',[ReimbursementController::class,'reimbursement_add']);
