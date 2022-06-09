@@ -18,3 +18,13 @@ use App\Http\Controllers\ReimbursementController;
 Route::get('/',[HomeController::class,'index']);
 Route::get('/reimbursement',[ReimbursementController::class,'index']);
 Route::get('/reimbursement-add',[ReimbursementController::class,'reimbursement_add']);
+
+Route::get('/login', function () {
+    return view('auth.login');
+});
+
+Route::post('/login', [LoginController::class, 'login']);
+Route::post('/logout', [LoginController::class, 'logout']);
+Route::post('/index', [LoginController::class, 'index']);
+Route::post('/register_save', [LoginController::class, 'register_save']);
+
