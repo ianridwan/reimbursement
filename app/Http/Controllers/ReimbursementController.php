@@ -35,6 +35,7 @@ class ReimbursementController extends Controller
                 'nama_pengajuan' => 'required',
                 'jenis_pengajuan' => 'required',
                 'nilai' => 'required',
+                'alasan'=>'required',
                 'bukti' =>'required',
                 ]);
         }else{
@@ -53,8 +54,9 @@ class ReimbursementController extends Controller
             $reimbursement->status = 1;
             if($request->jenis_pengajuan==1){
                 $reimbursement->klien = $request->klien;
-                $reimbursement->alasan = $request->alasan;
             }
+            $reimbursement->klien = '';
+            $reimbursement->alasan = $request->alasan;
             $file = $request->file('bukti');
             $tujuan_upload = 'upload_file';
             $file->move($tujuan_upload,$file->getClientOriginalName());
