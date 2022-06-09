@@ -57,11 +57,11 @@
                     <input id="klien" name="klien" class="form-control" placeholder="Klien" type="text" required="required" >
                   </div>
                 </div>
-                <div class="item form-group" id="transport_alasan" style="display:none">
-                  <label class="col-form-label col-md-3 col-sm-3 label-align">Alasan <span class="required">*</span>
+                <div class="item form-group" id="transport_alasan" style="display:''">
+                  <label class="col-form-label col-md-3 col-sm-3 label-align">Catatan <span class="required">*</span>
                   </label>
                   <div class="col-md-6 col-sm-6 ">
-                    <input id="alasan" name="alasan" class="form-control" placeholder="alasan" type="text" required="required" >
+                    <input id="alasan" name="alasan" class="form-control" placeholder="catatan" type="text" required="required" >
                   </div>
                 </div>
                 <div class="item form-group" id="kesehatan" style="display:''">
@@ -96,7 +96,7 @@ function check_pengajuan(id) {
         document.getElementById('kesehatan').style.display = '';
     }else if(id==2){
         document.getElementById('transport').style.display = 'none';
-        document.getElementById('transport_alasan').style.display = 'none';
+        document.getElementById('transport_alasan').style.display = '';
         document.getElementById('kesehatan').style.display = '';
     }else{
         document.getElementById('transport').style.display = '';
