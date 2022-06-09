@@ -22,13 +22,14 @@
             @endif
             <div class="x_content">
               <br />
-              <form id="form-reimbursement" class="form-horizontal form-label-left" action="{{ url('/reimbursement-add')}}" method="post" enctype="multipart/form-data">
+              <form id="form-reimbursement" class="form-horizontal form-label-left" action="{{ url('/reimbursement-edit')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="item form-group">
                   <label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_pengajuan">Nama Pengajuan<span class="required">*</span>
                   </label>
                   <div class="col-md-6 col-sm-6 ">
-                    <input type="text" id="nama_pengajuan" required="required" class="form-control" name="nama_pengajuan">
+                    <input type="text" id="nama_pengajuan" required="required" class="form-control" name="nama_pengajuan" value="{{$reimbursement->nama_pengajuan}}">
+                    <input type="hidden" id="id" required="required" class="form-control" name="id" value="{{$reimbursement->id}}">
                     
                   </div>
                 </div>
@@ -38,8 +39,12 @@
                   <div class="col-md-6 col-sm-6 ">
                     <select id="jenis_pengajuan" name="jenis_pengajuan" required="required" class="form-control" onchange=check_pengajuan(this.value);>
                       <option></option>
-                    @foreach($jenisreimbursement as $reimbursement)
-                      <option value="{{$reimbursement->id}}">{{$reimbursement->jenis_reimbursement}}</option>
+                    @foreach($jenisreimbursement as $reimbursement_list)
+                      @if($reimbursement->jenis_pengajuan == $reimbursement_list->id)
+                          <option value="{{$reimbursement_list->id}}" selected >{{$reimbursement_list->jenis_reimbursement}}</option>
+                      @else
+                          <option value="{{$reimbursement_list->id}}">{{$reimbursement_list->jenis_reimbursement}}</option>
+                      @endif
                     @endforeach
                     </select>
                   </div>
@@ -47,30 +52,35 @@
                 <div class="item form-group">
                   <label for="nilai" class="col-form-label col-md-3 col-sm-3 label-align">Nilai</label>
                   <div class="col-md-6 col-sm-6 ">
-                    <input id="nilai" class="form-control" type="number" name="nilai" maxlength="7">
+                    <input id="nilai" class="form-control" type="number" name="nilai" maxlength="7" value="{{$reimbursement->nilai}}">
                   </div>
                 </div>
-                <div class="item form-group" id="transport" style="display:none">
-                  <label class="col-form-label col-md-3 col-sm-3 label-align">Klien <span class="required">*</span>
+                @if($reimbursement->jenis_pengajuan=='1')
+                <div class="item form-group" id="transport" style="display:''">
+                  <label class="col-form-label col-md-3 col-sm-3 label-align">Klien <span class="required" >*</span>
                   </label>
                   <div class="col-md-6 col-sm-6 " >
-                    <input id="klien" name="klien" class="form-control" placeholder="Klien" type="text" required="required" >
+                    <input id="klien" name="klien" class="form-control" placeholder="Klien" type="text" required="required" value="{{$reimbursement->klien}}">
                   </div>
                 </div>
+                @else
+                <div class="item form-group" id="transport" style="display:none">
+                  <label class="col-form-label col-md-3 col-sm-3 label-align">Klien <span class="required" >*</span>
+                  </label>
+                  <div class="col-md-6 col-sm-6 " >
+                    <input id="klien" name="klien" class="form-control" placeholder="Klien" type="text" required="required" value="{{$reimbursement->klien}}">
+                  </div>
+                </div>
+                @endif
+                
                 <div class="item form-group" id="transport_alasan" style="display:''">
                   <label class="col-form-label col-md-3 col-sm-3 label-align">Catatan <span class="required">*</span>
                   </label>
                   <div class="col-md-6 col-sm-6 ">
-                    <input id="alasan" name="alasan" class="form-control" placeholder="catatan" type="text" required="required" >
+                    <input id="alasan" name="alasan" class="form-control" placeholder="catatan" type="text" required="required" value="{{$reimbursement->alasan}}" >
                   </div>
                 </div>
-                <div class="item form-group" id="kesehatan" style="display:''">
-                  <label class="col-form-label col-md-3 col-sm-3 label-align">Bukti <span class="required">*</span>
-                  </label>
-                  <div class="col-md-6 col-sm-6 ">
-                    <input id="bukti" name="bukti" class="form-control" placeholder="" type="file" required="required" >
-                  </div>
-                </div>
+                
                 <div class="ln_solid"></div>
                 <div class="item form-group">
                   <div class="col-md-6 col-sm-6 offset-md-3">
