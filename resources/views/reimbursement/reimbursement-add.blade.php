@@ -37,7 +37,6 @@
                   <div class="col-md-6 col-sm-6 ">
                     <select id="jenis_pengajuan" name="jenis_pengajuan" required="required" class="form-control" onchange=check_pengajuan(this.value);>
                       <option></option>
-                      
                     @foreach($jenisreimbursement as $reimbursement)
                       <option value="{{$reimbursement->id}}">{{$reimbursement->jenis_reimbursement}}</option>
                     @endforeach
