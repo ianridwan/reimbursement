@@ -48,7 +48,7 @@
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-home"></i> Home</a>
                   </li>
-                  <li><a><i class="fa fa-edit"></i> Reimbursement</a>
+                  <li><a href="{{ url('/reimbursement') }}"><i class="fa fa-edit"></i> Reimbursement</a>
                   </li>
                   <li><a><i class="fa fa-bar-chart-o"></i>Pengaturan <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
