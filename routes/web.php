@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ReimbursementController;
+use App\Http\Controllers\LoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,16 +25,18 @@ use Illuminate\Support\Facades\Auth;
 
     
 
+    Route::post('/register_save', [LoginController::class, 'register_save']);
     Route::post('/login', [LoginController::class, 'login']);
     Route::post('/logout', [LoginController::class, 'logout']);
     Route::post('/index', [LoginController::class, 'index']);
-    Route::post('/register_save', [LoginController::class, 'register_save']);
+
 
     Route::get('/login', function () {
         return view('auth.login');
     });
 
-
-
+    Route::get('/register', function () {
+        return view('auth.register');
+    });
 
 

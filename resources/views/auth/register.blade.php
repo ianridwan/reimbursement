@@ -28,22 +28,31 @@
       <a class="hiddenanchor" id="signin"></a>
 
       <div class="login_wrapper">
-
-        <div id="register" class="animate form registration_form">
+        <div class="animate form login_form">
           <section class="login_content">
-            <form>
-              <h1>Create Account</h1>
+            <form action="/register_save" method="POST" name="form-register" id="form-register">
+              @csrf
+              <h1>Register Form</h1>
+              @if (count($errors) > 0)
+              <div class = "alert alert-danger">
+                  <ul>
+                      @foreach ($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                      @endforeach
+                  </ul>
+              </div>
+            @endif
               <div>
-                <input type="text" class="form-control" placeholder="Username" required="" />
+                <input type="text" class="form-control" placeholder="Username" name="name" required="" />
               </div>
               <div>
-                <input type="email" class="form-control" placeholder="Email" required="" />
+                <input type="text" class="form-control" placeholder="Email" name="email" required="" />
               </div>
               <div>
-                <input type="password" class="form-control" placeholder="Password" required="" />
+                <input type="password" class="form-control" placeholder="Password" name="password" required="" />
               </div>
               <div>
-                <a class="btn btn-default submit" href="index.html">Submit</a>
+                <a class="btn btn-default submit" onclick="document.getElementById('form-register').submit();" type="button">Submit</a>
               </div>
 
               <div class="clearfix"></div>
@@ -56,10 +65,12 @@
                 <div class="clearfix"></div>
                 <br />
 
-              </div>
+                <div>
             </form>
           </section>
         </div>
+
+  
       </div>
     </div>
   </body>

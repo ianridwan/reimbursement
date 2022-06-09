@@ -8,27 +8,6 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    //untuk insert user ke table
-    public function submit_user(Request $request) 
-    {
-        $request->validate([
-        'name' => 'required',
-        'email' => 'required|email|unique:users',
-        'password' => 'required|min:6',
-        'file' => 'required',
-        ]);
-        
-        $users = new User;
-        $users->name = $request->username;
-        $users->email = $request->email;
-        $users->password = bcrypt($request->password);
-        $users->role = 'user';
-        $users->file = $request->file;
-        $users->save();
-        
-        return redirect("/user");
-    }
-    //end untuk insert user ke table
     
     public function login(Request $request){
         $credentials = $request->validate([
@@ -69,9 +48,9 @@ class LoginController extends Controller
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         if($user->save()){
-            $pesan = "Sukses";
+            $pesan = "Account User Anda Telah dibuat, Silahkan Login";
         }else{
-            $pesan = "Gagal";
+            $pesan = "Gagal Membuat Account User";
         }
         return view('/auth/register',['pesan'=>$pesan]);
 
