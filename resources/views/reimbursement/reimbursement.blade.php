@@ -11,11 +11,35 @@
                   <div class="x_title">
                     <h2><small>List Reimbursement</small></h2>
                     <ul class="nav navbar-right panel_toolbox">
-                        <a href="{{url('/reimbursement-add') }}"></a>
+                        <a href="{{url('/reimbursement-add') }}" class="btn btn-primary"><small>Add Reimbursement</small></a>
                     </ul>
                     <div class="clearfix"></div>
                   </div>
-
+                  @if($pesan == "updated" && isset($pesan) )
+                <div class = "alert alert-success">
+                    <ul>
+                        <li>Data Berhasil Simpan</li>
+                    </ul>
+                </div>
+                @elseif($pesan == "saved" && isset($pesan))
+                <div class = "alert alert-success">
+                    <ul>
+                        <li>Data Berhasil di Simpan</li>
+                    </ul>
+                </div>
+                @elseif($pesan == "deleted" && isset($pesan))
+                <div class = "alert alert-success">
+                    <ul>
+                        <li>Data Berhasil di Hapus</li>
+                    </ul>
+                </div>
+                @elseif(isset($pesan) and $pesan != '')
+                <div class = "alert alert-danger">
+                    <ul>
+                        <li>Data Gagal Dihapus</li>
+                    </ul>
+                </div>
+                @endif
                   <div class="x_content">
                     <div class="table-responsive">
                       <table class="table table-striped jambo_table bulk_action">
@@ -40,9 +64,9 @@
                             <tr class="even pointer">
                                 <td class="a-center">{{$loop->iteration}}</td>
                                 <td class=" ">{{$reimbursement->nama_pengajuan}}</td>
-                                <td class=" ">{{$reimbursement->jenis_pengajuan}} </td>
-                                <td class=" ">{{$reimbursement->status}}</td>
-                                <td class="a-right a-right ">$7.45</td>
+                                <td class=" ">{{$reimbursement->jenis_reimbursement->jenis_reimbursement}} </td>
+                                <td class=" ">{{$reimbursement->status_reimbursement->status}}</td>
+                                <td class="a-right a-right ">Rp {{$reimbursement->nilai}}</td>
                                 <td class=" last"><a href="#">View</a>
                                 </td>
                             </tr>
