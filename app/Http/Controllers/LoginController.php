@@ -48,9 +48,9 @@ class LoginController extends Controller
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         if($user->save()){
-            $pesan = "Sukses";
+            $pesan = "Account User Anda Telah dibuat, Silahkan Login";
         }else{
-            $pesan = "Gagal";
+            $pesan = "Gagal Membuat Account User";
         }
         return view('/auth/register',['pesan'=>$pesan]);
 

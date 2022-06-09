@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ReimbursementController;
+use App\Http\Controllers\LoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,6 +22,11 @@ Route::get('/reimbursement-add',[ReimbursementController::class,'reimbursement_a
 
 Route::get('/login', function () {
     return view('auth.login');
+});
+
+
+Route::get('/register', function () {
+    return view('auth.register');
 });
 
 Route::post('/login', [LoginController::class, 'login']);

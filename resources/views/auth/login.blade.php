@@ -30,16 +30,26 @@
       <div class="login_wrapper">
         <div class="animate form login_form">
           <section class="login_content">
-            <form>
+            <form action="/login" method="POST" name="form-login" id="form-login">
+              @csrf
+              @if (count($errors) > 0)
+              <div class = "alert alert-danger">
+                  <ul>
+                      @foreach ($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                      @endforeach
+                  </ul>
+              </div>
+            @endif
               <h1>Login Form</h1>
               <div>
-                <input type="text" class="form-control" placeholder="Username" required="" />
+                <input type="text" class="form-control" placeholder="Email" name="email" required="" />
               </div>
               <div>
-                <input type="password" class="form-control" placeholder="Password" required="" />
+                <input type="password" class="form-control" placeholder="Password" name="password" required="" />
               </div>
               <div>
-                <a class="btn btn-default submit" href="index.html">Log in</a>
+                <a class="btn btn-default submit" onclick="document.getElementById('form-login').submit();" type="button" >Log in</a>
                 <a class="reset_pass" href="#">Lost your password?</a>
               </div>
 
@@ -47,7 +57,7 @@
 
               <div class="separator">
                 <p class="change_link">New to site?
-                  <a href="#signup" class="to_register"> Create Account </a>
+                  <a href="{{url('/register')}}" class="to_register"> Create Account </a>
                 </p>
 
                 <div class="clearfix"></div>
@@ -58,37 +68,7 @@
           </section>
         </div>
 
-        <div id="register" class="animate form registration_form">
-          <section class="login_content">
-            <form>
-              <h1>Create Account</h1>
-              <div>
-                <input type="text" class="form-control" placeholder="Username" required="" />
-              </div>
-              <div>
-                <input type="email" class="form-control" placeholder="Email" required="" />
-              </div>
-              <div>
-                <input type="password" class="form-control" placeholder="Password" required="" />
-              </div>
-              <div>
-                <a class="btn btn-default submit" href="index.html">Submit</a>
-              </div>
-
-              <div class="clearfix"></div>
-
-              <div class="separator">
-                <p class="change_link">Already a member ?
-                  <a href="#signin" class="to_register"> Log in </a>
-                </p>
-
-                <div class="clearfix"></div>
-                <br />
-
-              </div>
-            </form>
-          </section>
-        </div>
+  
       </div>
     </div>
   </body>
