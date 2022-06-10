@@ -34,14 +34,21 @@
               @csrf
               <h1>Register Form</h1>
               @if (count($errors) > 0)
-              <div class = "alert alert-danger">
-                  <ul>
-                      @foreach ($errors->all() as $error)
-                      <li>{{ $error }}</li>
-                      @endforeach
-                  </ul>
+                <div class = "alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+              @endif
+              @if(isset($pesan) and $pesan != '')
+                  <div class = "alert alert-success">
+                      <ul>
+                          <li>{{$pesan}}</li>
+                      </ul>
               </div>
-            @endif
+              @endif
               <div>
                 <input type="text" class="form-control" placeholder="Username" name="name" required="" />
               </div>

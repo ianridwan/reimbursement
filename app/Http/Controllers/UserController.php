@@ -70,7 +70,7 @@ class UserController extends Controller
             return redirect('/')->with('pesan','Anda belum Login atau Session habis');
         }
         $userdata = User::where('id',$id)->first();
-        $array_role = array('admin'=>'Admin','manage'=>'Manage','user'=>'User');
+        $array_role = array('admin'=>'Admin','manager'=>'Manager','user'=>'User');
         return view('/user/user-edit',['userdata'=>$userdata,'array_role'=>$array_role,'users'=>$user]);
     }
     public function user_update(Request $request){
