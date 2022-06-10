@@ -149,6 +149,7 @@ class ReimbursementController extends Controller
         $reimbursementdata->jenis_pengajuan = $request->jenis_pengajuan;
         $reimbursementdata->alasan = $request->alasan;
         $reimbursementdata->nilai = $request->nilai;
+        //$reimbursementdata->klien = $request->klien;
         if($request->jenis_pengajuan=='1'){
             $reimbursementdata->klien = $request->klien;
         }else{
