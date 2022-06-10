@@ -17,7 +17,8 @@ class ReimbursementController extends Controller
         
         $pesan = Session::get('pesan');
         $user = Auth::user();
-        if(isset($user) && $user->count() ==0 ){
+    
+        if(empty($user)){
             return redirect('/')->with('pesan','Anda belum Login atau Session habis');
         }
         if(Gate::allows('isAdmin')){
@@ -34,7 +35,7 @@ class ReimbursementController extends Controller
     public function reimbursement_add(){ 
         $jenisreimbursement = JenisReimbursement::all();
         $user = Auth::user();
-        if(isset($user) && $user->count() ==0 ){
+        if(empty($user)){
             return redirect('/')->with('pesan','Anda belum Login atau Session habis');
         }
         return view('/reimbursement/reimbursement-add',['jenisreimbursement'=>$jenisreimbursement,'users'=>$user]);
@@ -112,7 +113,7 @@ class ReimbursementController extends Controller
     }
     public function reimbursement_edit($id){
         $user = Auth::user();
-        if(isset($user) && $user->count() ==0 ){
+        if(empty($user)){
             return redirect('/')->with('pesan','Anda belum Login atau Session habis');
         }
         $reimbursementdata = Reimbursement::where('id',$id)->first();
@@ -163,7 +164,7 @@ class ReimbursementController extends Controller
     }
     public function reimbursement_delete(Request $request){
         $user = Auth::user();
-        if(isset($user) && $user->count() ==0 ){
+        if(empty($user)){
             return redirect('/')->with('pesan','Anda belum Login atau Session habis');
         }
         $reimbursementdata = Reimbursement::where('id',$request->id)->first();

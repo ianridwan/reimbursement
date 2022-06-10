@@ -15,22 +15,22 @@ class UserController extends Controller
         $userlist = User::all();
         $pesan = Session::get('pesan');
         $user = Auth::user();
-        if(isset($user) && $user->count() ==0 ){
+        if(empty($user)){
             return redirect('/')->with('pesan','Anda belum Login atau Session habis');
         }
         return view('/user/user',['userlist'=>$userlist,'pesan'=>$pesan,'users'=>$user]);
     }
     public function user_add(){ 
-        $array_role = array('admin'=>'Admin','manage'=>'Manage','user'=>'User');
+        $array_role = array('admin'=>'Admin','manager'=>'Manager','user'=>'User');
         $user = Auth::user();
-        if(isset($user) && $user->count() ==0 ){
+        if(empty($user)){
             return redirect('/')->with('pesan','Anda belum Login atau Session habis');
         }
         return view('/user/user-add',['array_role'=>$array_role,'users'=>$user]);
     }
     public function user_save(Request $request){
         $user = Auth::user();
-        if(isset($user) && $user->count() ==0 ){
+        if(empty($user)){
             return redirect('/')->with('pesan','Anda belum Login atau Session habis');
         }
         $request->validate([
@@ -53,7 +53,7 @@ class UserController extends Controller
     }
     public function user_delete(Request $request){
         $user = Auth::user();
-        if(isset($user) && $user->count() ==0 ){
+        if(empty($user)){
             return redirect('/')->with('pesan','Anda belum Login atau Session habis');
         }
         $userdata = User::where('id',$request->id)->first();
@@ -66,7 +66,7 @@ class UserController extends Controller
     }
     public function user_edit($id){
         $user = Auth::user();
-        if(isset($user) && $user->count() ==0 ){
+        if(empty($user)){
             return redirect('/')->with('pesan','Anda belum Login atau Session habis');
         }
         $userdata = User::where('id',$id)->first();
